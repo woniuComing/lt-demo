@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div class="home">
+    <h1>This is home page</h1>
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import {
+    getTop
+} from '@/api/index'
+import {
+    defineComponent,
+    onMounted
+} from 'vue'
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+export default defineComponent({
+    setup() {
+        const getTopData = async () => {
+            const res = await getTop();
+            console.log('topdata', res);
+        }
+
+        onMounted(() => {
+            getTopData()
+        })
+    }
+})
 </script>
