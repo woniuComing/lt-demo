@@ -1,7 +1,7 @@
 import axios from "axios";
 // https://lt.lenovo.com.cn/iip/api/v2
 const serviceConfig = {
-  baseURL: "/api/v2/",
+  baseURL: "/api",
   timeout: 10000,
   headers: {
     "content-type": "application/json;charset=UTF-8"

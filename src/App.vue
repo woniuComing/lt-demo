@@ -1,6 +1,6 @@
 <template>
 <div class="wrap">
-    <div class='header'>
+    <div class="header">
         <p>联想电脑管家</p>
     </div>
     <div class="nav">
@@ -55,16 +55,16 @@
 <script lang="ts">
 import {
     defineComponent
-} from 'vue'
+} from 'vue';
 import {
     RouterLink,
     RouterView
-} from 'vue-router'
+} from 'vue-router';
 export default defineComponent({
     name: 'App',
     components: {
         RouterLink,
         RouterView
     }
-})
+});
 </script>

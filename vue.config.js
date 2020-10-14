@@ -1,4 +1,3 @@
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
     // 输出路径
@@ -21,14 +20,17 @@ module.exports = {
     devServer: {
         host: 'localhost',
         port: 8888,
-        https: false,
+        // https: false,
         open: true,
         hotOnly: true, // 热更新
         proxy: {
             '/api': {
-                target: 'https://lt.lenovo.com.cn/iip/api',
+                target: 'https://lt.lenovo.com.cn/iip/api/v2',
                 changeOrigin: true,
-                ws: true
+                secure: false,
+                pathRewrite: {
+                    '^/api': ''
+                }
             }
 
         }
