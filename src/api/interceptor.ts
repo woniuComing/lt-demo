@@ -1,7 +1,7 @@
 import axios from "axios";
-// https://lt.lenovo.com.cn/iip/api/v2
+
 const serviceConfig = {
-  baseURL: "/api",
+  baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 10000,
   headers: {
     "content-type": "application/json;charset=UTF-8"
@@ -14,6 +14,7 @@ const instance = axios.create(serviceConfig);
 instance.interceptors.request.use(config => {
   return config;
 });
+
 // 返回拦截
 instance.interceptors.response.use(
   response => {

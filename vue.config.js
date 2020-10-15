@@ -1,3 +1,4 @@
+console.log('process.env.NODE_ENV', process.env.NODE_ENV, process.env.LT_BASE_URL);
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
     // 输出路径
@@ -20,16 +21,15 @@ module.exports = {
     devServer: {
         host: 'localhost',
         port: 8888,
-        // https: false,
         open: true,
         hotOnly: true, // 热更新
         proxy: {
-            '/api': {
+            [process.env.VUE_APP_BASE_URL]: {
                 target: 'https://lt.lenovo.com.cn/iip/api/v2',
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: {
-                    '^/api': ''
+                    [`^${process.env.VUE_APP_BASE_URL}`]: ''
                 }
             }
 
