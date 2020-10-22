@@ -1,4 +1,4 @@
-console.log('process.env.NODE_ENV', process.env.NODE_ENV, process.env.LT_BASE_URL);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
     // 输出路径

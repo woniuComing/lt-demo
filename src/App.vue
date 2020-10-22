@@ -1,15 +1,53 @@
 <template>
 <div class="wrap">
     <div class="header">
-        <p>联想电脑管家</p>
-    </div>
-    <div class="nav">
-        <RouterLink to="/">所有</RouterLink>
-        <RouterLink to="/personal">我的</RouterLink>
+        <Title />
+        <div class="nav" v-show='showRoute'>
+            <RouterLink to="/">所有</RouterLink>
+            <RouterLink to="/personal">我的</RouterLink>
+        </div>
     </div>
     <RouterView />
 </div>
 </template>
+
+<script lang="ts">
+import {
+    computed,
+    defineComponent,
+    provide
+} from 'vue';
+import {
+    RouterLink,
+    RouterView
+} from 'vue-router';
+import Title from '@/components/title/index.vue';
+import {
+    useStore
+} from 'vuex';
+export default defineComponent({
+    name: 'App',
+    components: {
+        RouterLink,
+        RouterView,
+        Title
+    },
+    setup() {
+        const store = useStore();
+
+        const showRoute = computed(() => {
+            if (store.state.currentPage === 'detail') {
+                return false;
+            };
+            return true;
+        })
+
+        return {
+            showRoute
+        }
+    }
+});
+</script>
 
 <style lang="scss">
 .wrap {
@@ -22,49 +60,32 @@
 
     .header {
         width: 100%;
-        height: 0.46rem;
         background-color: $headerbgc;
         color: $headerColor;
         display: flex;
-        // justify-content: center;
+        flex-direction: column;
         align-items: center;
-    }
 
-    .nav {
-        display: flex;
-        height: 0.3rem;
-        background-color: $headerbgc;
-
-        a {
-            flex: 1;
+        .nav {
+            width: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 3px solid transparent;
-            color: $headerColor;
+            height: 0.3rem;
 
-            &.router-link-active {
-                color: #fff;
-                border-bottom-color: rgb(255, 160, 83);
+            a {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 3px solid transparent;
+                color: $headerColor;
+
+                &.router-link-active {
+                    color: #fff;
+                    border-bottom-color: rgb(255, 160, 83);
+                }
             }
         }
     }
+
 }
 </style>
-
-<script lang="ts">
-import {
-    defineComponent
-} from 'vue';
-import {
-    RouterLink,
-    RouterView
-} from 'vue-router';
-export default defineComponent({
-    name: 'App',
-    components: {
-        RouterLink,
-        RouterView
-    }
-});
-</script>
